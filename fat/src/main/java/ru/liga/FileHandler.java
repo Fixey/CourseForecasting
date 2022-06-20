@@ -17,10 +17,6 @@ public class FileHandler {
     @Setter
     private String fileName;
 
-    public void FileHandler() {
-        this.fileName = "";
-    }
-
     /**
      * Создание инстанс файла для будущей обработки без оглавления
      *
@@ -48,7 +44,7 @@ public class FileHandler {
      */
 
     public static LimitQueue<Double> getQueueRates(CSVReader READER, Integer days) throws CsvValidationException, IOException {
-        ArrayList<Double> arrRates = new ArrayList<Double>(7);
+        ArrayList<Double> arrRates = new ArrayList<>(7);
         String[] line = READER.readNext();
         LimitQueue<Double> queueRates = new LimitQueue<>(7);
         for (int i = 1; i <= days && line != null; i++) {
@@ -58,7 +54,7 @@ public class FileHandler {
             line = READER.readNext();
             if (line == null || i == days) {
                 Collections.reverse(arrRates);
-                arrRates.forEach(x -> queueRates.add(x));
+                queueRates.addAll(arrRates);
                 return queueRates;
             }
         }
@@ -74,12 +70,12 @@ public class FileHandler {
      */
     public static Double getAverageOfPeriod(CSVReader READER, Integer days) throws CsvValidationException, IOException {
         String[] line = READER.readNext();
-        Double average = Double.MIN_VALUE;
+        double average = Double.MIN_VALUE;
         int counterAverage = 0;
         while (line != null) {
             String rate = line[0].split(";")[2];
-            Double dRate = Double.valueOf(rate.substring(2, rate.length() - 1).replace(",", "."));
-            average += Double.valueOf(dRate);
+            double dRate = Double.parseDouble(rate.substring(2, rate.length() - 1).replace(",", "."));
+            average += dRate;
             line = READER.readNext();
             counterAverage++;
             if (line == null || counterAverage == days) {
@@ -97,12 +93,12 @@ public class FileHandler {
      */
     public static Double getAverageTheWholePeriod(CSVReader READER) throws CsvValidationException, IOException {
         String[] line = READER.readNext();
-        Double average = Double.MIN_VALUE;
+        double average = Double.MIN_VALUE;
         int counterAverage = 0;
         while (line != null) {
             String rate = line[0].split(";")[2];
-            Double dRate = Double.valueOf(rate.substring(2, rate.length() - 1).replace(",", "."));
-            average += Double.valueOf(dRate);
+            double dRate = Double.parseDouble(rate.substring(2, rate.length() - 1).replace(",", "."));
+            average += dRate;
             line = READER.readNext();
             counterAverage++;
             if (line == null) {
