@@ -25,7 +25,7 @@ public class FileHandler {
      */
 
     public CSVReader getFileHandler(Currency_type currency_type) throws FileNotFoundException {
-        this.fileName = ".\\fat\\src\\main\\csv\\" + currency_type + ".csv";
+        this.fileName = "..\\src\\main\\csv\\" + currency_type + ".csv";
         final CSVReader READER = new CSVReader(new FileReader(fileName));
         try {
             READER.skip(1);
