@@ -15,7 +15,7 @@ import java.util.Collections;
 public class FileHandler {
     @Getter
     @Setter
-    private String fileName;
+    private String filePath;
 
     /**
      * Создание инстанс файла для будущей обработки без оглавления
@@ -24,9 +24,9 @@ public class FileHandler {
      * @return CSVReader файл для чтения
      */
 
-    public CSVReader getFileHandler(Currency_type currency_type) throws FileNotFoundException {
-        this.fileName = "..\\src\\main\\csv\\" + currency_type + ".csv";
-        final CSVReader READER = new CSVReader(new FileReader(fileName));
+    public CSVReader getFileHandler(CurrencyType currency_type) throws FileNotFoundException {
+        this.filePath = getClass().getClassLoader().getResource("csv/"+currency_type+".csv").getPath();
+        final CSVReader READER = new CSVReader(new FileReader(filePath));
         try {
             READER.skip(1);
             return READER;
@@ -116,10 +116,10 @@ public class FileHandler {
     public void closeFileHandler(CSVReader csvReader) throws IOException {
         csvReader.close();
     }
-    public static void main(String[] args) throws IOException, CsvValidationException {
-        CSVReader myFile = new FileHandler().getFileHandler(Currency_type.USD);
-//        getQueueRates(myFile,7);
-        System.out.println(getAverageOfPeriod(myFile, 2));
-        myFile.close();
-    }
+//    public static void main(String[] args) throws IOException, CsvValidationException {
+//        CSVReader myFile = new FileHandler().getFileHandler(CurrencyType.USD);
+////        getQueueRates(myFile,7);
+//        System.out.println(getAverageOfPeriod(myFile, 2));
+//        myFile.close();
+//    }
 }
