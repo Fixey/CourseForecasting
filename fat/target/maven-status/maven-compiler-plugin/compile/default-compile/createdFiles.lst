@@ -1,5 +1,5 @@
 ru\liga\LimitQueue.class
-ru\liga\PeriodEngine.class
+ru\liga\PeriodUtils.class
 ru\liga\Main.class
 ru\liga\Forecasting.class
 ru\liga\CurrencyType.class

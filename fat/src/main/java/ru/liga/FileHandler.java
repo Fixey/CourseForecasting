@@ -48,8 +48,8 @@ public class FileHandler {
         String[] line = READER.readNext();
         LimitQueue<Double> queueRates = new LimitQueue<>(7);
         for (int i = 1; i <= days && line != null; i++) {
-            String rate = line[0].split(";")[2];
-            Double dRate = Double.valueOf(rate.substring(2, rate.length() - 1).replace(",", "."));
+            final String rate = line[0].split(";")[2];
+            final Double dRate = Double.valueOf(rate.substring(2, rate.length() - 1).replace(",", "."));
             arrRates.add(dRate);
             line = READER.readNext();
             if (line == null || i == days) {

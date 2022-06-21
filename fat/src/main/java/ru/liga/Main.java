@@ -32,7 +32,7 @@ public class Main {
                 }
                 String currency = arrParams[1].toUpperCase();
                 String period = arrParams[2];
-                Integer numDays = PeriodEngine.countDayForPeriod(period);
+                Integer numDays = PeriodUtils.countDayForPeriod(period);
                 if (hasRateCommandErrors(currency, numDays)) break;
                 rateEngine(currency, numDays);
                 break;
@@ -53,7 +53,7 @@ public class Main {
         try (CSVReader fileCurrency = new FileHandler().getFileHandler(CurrencyType.valueOf(cur))) {
             LimitQueue<Double> queueRates = getQueueRates(fileCurrency, 7); //Сделали Очередь из ставок из файла
             LinkedList listRatesForPeriod = Forecasting.getListForecastingRates(queueRates, days); //Список ставок за n дней в зависимости от периода
-            LinkedList listDates = PeriodEngine.getListOfDatesForPeriod(days);
+            LinkedList listDates = PeriodUtils.getListOfDatesForPeriod(days);
             for (int i = 0; i < listDates.size(); i++) {
                 System.out.println(listDates.get(i) + String.format("%.2f", listRatesForPeriod.get(i)));
             }
