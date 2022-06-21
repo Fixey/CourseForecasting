@@ -6,9 +6,7 @@ import com.opencsv.exceptions.CsvValidationException;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -20,16 +18,16 @@ public class FileHandler {
     /**
      * Создание инстанс файла для будущей обработки без оглавления
      *
-     * @param currency_type курс
+     * @param currencyType курс
      * @return CSVReader файл для чтения
      */
 
-    public CSVReader getFileHandler(CurrencyType currency_type) throws FileNotFoundException {
-        this.filePath = getClass().getClassLoader().getResource("csv/"+currency_type+".csv").getPath();
-        final CSVReader READER = new CSVReader(new FileReader(filePath));
+    public BufferedReader getFileHandler(CurrencyType currencyType) throws FileNotFoundException {
         try {
-            READER.skip(1);
-            return READER;
+            InputStream in = getClass().getResourceAsStream("/csv/"+currencyType+".csv");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+            reader.readLine();
+            return reader;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -43,15 +41,15 @@ public class FileHandler {
      * @return Очередь из значений курса
      */
 
-    public static LimitQueue<Double> getQueueRates(CSVReader READER, Integer days) throws CsvValidationException, IOException {
+    public static LimitQueue<Double> getQueueRates(BufferedReader READER, Integer days) throws CsvValidationException, IOException {
         ArrayList<Double> arrRates = new ArrayList<>(7);
-        String[] line = READER.readNext();
+        String line = READER.readLine();
         LimitQueue<Double> queueRates = new LimitQueue<>(7);
         for (int i = 1; i <= days && line != null; i++) {
-            final String rate = line[0].split(";")[2];
+            final String rate = line.split(";")[2];
             final Double dRate = Double.valueOf(rate.substring(2, rate.length() - 1).replace(",", "."));
             arrRates.add(dRate);
-            line = READER.readNext();
+            line = READER.readLine();
             if (line == null || i == days) {
                 Collections.reverse(arrRates);
                 queueRates.addAll(arrRates);
@@ -68,15 +66,15 @@ public class FileHandler {
      * @param days   кол-во дней
      * @return Double среднеарифметическое значение курса
      */
-    public static Double getAverageOfPeriod(CSVReader READER, Integer days) throws CsvValidationException, IOException {
-        String[] line = READER.readNext();
+    public static Double getAverageOfPeriod(BufferedReader READER, Integer days) throws CsvValidationException, IOException {
+        String line = READER.readLine();
         double average = Double.MIN_VALUE;
         int counterAverage = 0;
         while (line != null) {
-            String rate = line[0].split(";")[2];
+            String rate = line.split(";")[2];
             double dRate = Double.parseDouble(rate.substring(2, rate.length() - 1).replace(",", "."));
             average += dRate;
-            line = READER.readNext();
+            line = READER.readLine();
             counterAverage++;
             if (line == null || counterAverage == days) {
                 return average / counterAverage;
@@ -116,10 +114,10 @@ public class FileHandler {
     public void closeFileHandler(CSVReader csvReader) throws IOException {
         csvReader.close();
     }
-//    public static void main(String[] args) throws IOException, CsvValidationException {
-//        CSVReader myFile = new FileHandler().getFileHandler(CurrencyType.USD);
-////        getQueueRates(myFile,7);
-//        System.out.println(getAverageOfPeriod(myFile, 2));
+    public static void main(String[] args) throws IOException, CsvValidationException {
+        BufferedReader myFile = new FileHandler().getFileHandler(CurrencyType.USD);
+//        getQueueRates(myFile,7);
+        System.out.println(getAverageOfPeriod(myFile, 2));
 //        myFile.close();
-//    }
+    }
 }

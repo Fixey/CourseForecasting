@@ -4,6 +4,7 @@ import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
 import org.apache.commons.lang3.EnumUtils;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Scanner;
@@ -50,7 +51,7 @@ public class Main {
      * @param days Кол-во дней за какой надо рассчитать курс
      */
     static void rateEngine(String cur, Integer days) throws RateEngineExceptions {
-        try (CSVReader fileCurrency = new FileHandler().getFileHandler(CurrencyType.valueOf(cur))) {
+        try (BufferedReader fileCurrency = new FileHandler().getFileHandler(CurrencyType.valueOf(cur))) {
             LimitQueue<Double> queueRates = getQueueRates(fileCurrency, 7); //Сделали Очередь из ставок из файла
             LinkedList listRatesForPeriod = Forecasting.getListForecastingRates(queueRates, days); //Список ставок за n дней в зависимости от периода
             LinkedList listDates = PeriodUtils.getListOfDatesForPeriod(days);
