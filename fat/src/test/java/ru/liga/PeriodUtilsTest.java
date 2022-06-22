@@ -6,7 +6,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import static org.junit.Assert.*;
-import static org.junit.Assert.assertNull;
 
 public class PeriodUtilsTest {
     @Test
@@ -20,11 +19,13 @@ public class PeriodUtilsTest {
         assertTrue(periodUtils.countDaysUntilDate(date3.format(dtf)).equals(-2));
         assertNull(periodUtils.countDaysUntilDate("21-06-2022"));
     }
+
     @Test
     public void getNullDaysUntilDateTest() {
         PeriodUtils periodUtils = new PeriodUtils();
         assertNull(periodUtils.countDaysUntilDate("21-06-2022"));
     }
+
     @Test
     public void countDayForPeriodWithoutExceptions() {
         PeriodUtils periodUtils = new PeriodUtils();
@@ -40,24 +41,27 @@ public class PeriodUtilsTest {
         assertTrue(periodUtils.countDayForPeriod("Week").equals(7));
 
     }
+
     @Test
     public void getNullCountDayForPeriod() {
         PeriodUtils periodUtils = new PeriodUtils();
         assertNull(periodUtils.countDayForPeriod("WTF"));
         assertNull(periodUtils.countDayForPeriod("22.05.2222"));
     }
+
     @Test
     public void getNullListOfDatesForPeriod() {
         PeriodUtils periodUtils = new PeriodUtils();
 //        assertNull(periodEngine.getListOfDatesForPeriod(1));
 //        assertNull(periodEngine.getListOfDatesForPeriod(0));
     }
+
     @Test
     public void getListOfDatesForPeriodWithoutExceptions() {
         PeriodUtils periodUtils = new PeriodUtils();
-        assertTrue(periodUtils.getListOfDatesForPeriod(1).size()==1);
-        assertTrue(periodUtils.getListOfDatesForPeriod(0).size()==1);
-        assertTrue(periodUtils.getListOfDatesForPeriod(10).size()==10);
+        assertTrue(periodUtils.getListOfDatesForPeriod(1).size() == 1);
+        assertTrue(periodUtils.getListOfDatesForPeriod(0).size() == 1);
+        assertTrue(periodUtils.getListOfDatesForPeriod(10).size() == 10);
     }
 
 

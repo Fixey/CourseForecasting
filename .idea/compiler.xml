@@ -10,8 +10,8 @@
         <module name="fat" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="fat" target="18" />
+    <bytecodeTargetLevel target="18">
+      <module name="fat" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>

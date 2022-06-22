@@ -1,2 +1,5 @@
+ru\liga\ConsoleParserTest.class
 ru\liga\PeriodUtilsTest.class
-ru\liga\ForecastingTest.class
+ru\liga\LineParserTest.class
+ru\liga\ForecastingRatesTest.class
+ru\liga\ConsoleAppTest.class
