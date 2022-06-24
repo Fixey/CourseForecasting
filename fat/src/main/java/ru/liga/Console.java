@@ -34,16 +34,10 @@ public class Console {
     public void invokeCommand() {
         switch (command) {
             case ("help"):
-                new CommandHelp().printHelp();
+                new CommandHelp().invoke(commandArgs);
                 break;
             case ("rate"):
-                CommandRateValidation commandRateValidation = new CommandRateValidation();
-                if (!commandRateValidation.isValidCommandRate(commandArgs)) { //Валидируем аргументы
-                    break;
-                }
-                String currency = commandArgs.get(0).toUpperCase();
-                String period = commandArgs.get(1);
-                new CommandRate().rateEngine(currency, period);
+                new CommandRate().invoke(commandArgs);
                 break;
             default:
                 System.out.println("Unknown command");

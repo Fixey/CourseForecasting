@@ -1,13 +1,17 @@
 package ru.liga;
 
+import java.util.LinkedList;
+
 /**
- * Команда выполняющая действия по команде help
+ * Класс отвечающий за действия по команде Help
  */
-public class CommandHelp {
+public class CommandHelp implements Command {
+
     /**
-     * Класс отвечающий за действия по команде Help
+     * Распечатывает список команд прогарммы
      */
-    public void printHelp() {
+    @Override
+    public void invoke(LinkedList<String> listArgs) {
         System.out.println("Options:");
         System.out.println("Rate <eur, usd, try> <today, tomorrow, week, month, dd/MM/yyyy>         Print Rate during period");
         System.out.println("help                                                                    Print commands for this app");
