@@ -13,14 +13,14 @@ import java.util.LinkedList;
 public class Console {
     @Getter
     @Setter
-    public String command;
+    public String commandName;
 
     @Getter
     @Setter
     public LinkedList<String> commandArgs = new LinkedList<>();
 
-    public Console(String command, LinkedList<String> commandArgs) {
-        this.command = command;
+    public Console(String commandName, LinkedList<String> commandArgs) {
+        this.commandName = commandName;
         this.commandArgs = commandArgs;
     }
 
@@ -32,16 +32,8 @@ public class Console {
      * Обработка команды
      */
     public void invokeCommand() {
-        switch (command) {
-            case ("help"):
-                new CommandHelp().invoke(commandArgs);
-                break;
-            case ("rate"):
-                new CommandRate().invoke(commandArgs);
-                break;
-            default:
-                System.out.println("Unknown command");
-        }
+        Command command = new CommandSelector().getCommand(commandName);
+        command.invoke(commandArgs);
     }
 
 }
