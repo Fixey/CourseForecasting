@@ -1,5 +1,7 @@
 package ru.liga;
 
+import ru.liga.front.ConsoleApp;
+
 /**
  * Запуск программы
  */

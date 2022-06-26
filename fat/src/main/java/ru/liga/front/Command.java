@@ -1,4 +1,4 @@
-package ru.liga;
+package ru.liga.front;
 
 import java.util.LinkedList;
 
@@ -7,7 +7,6 @@ import java.util.LinkedList;
  */
 interface Command {
     /**
-     *
      * @param listArgs аргументы метода
      */
     void invoke(LinkedList<String> listArgs);

@@ -1,4 +1,4 @@
-package ru.liga;
+package ru.liga.front;
 
 import lombok.NonNull;
 import org.apache.commons.lang3.EnumUtils;
@@ -21,7 +21,7 @@ public class CommandRateValidation {
      * @return True если все прошло успешно
      */
     public void ValidCommandRate(@NonNull LinkedList<String> listCommandArgs) {
-        if (listCommandArgs.size() != 2) {
+        if (listCommandArgs.size() < 2 || listCommandArgs.size() > 3) {
             throw new ArgumentCommandException();
         }
         if (!EnumUtils.isValidEnumIgnoreCase(CurrencyType.class, listCommandArgs.get(0))) {

@@ -1,4 +1,4 @@
-package ru.liga;
+package ru.liga.front;
 
 import ru.liga.exception.UnknownCommandException;
 

@@ -1,4 +1,4 @@
-package ru.liga;
+package ru.liga.util;
 
 import lombok.NonNull;
 import org.apache.commons.lang3.EnumUtils;
@@ -87,5 +87,10 @@ public class PeriodUtils {
             return EnumUtils.getEnumIgnoreCase(Period.class, period).getNumDays();
         }
         return null;
+    }
+
+    public static LocalDate toLocalDateTimeFromString(String date){
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        return LocalDate.parse(date, dtf);
     }
 }

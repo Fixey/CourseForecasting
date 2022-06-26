@@ -1,4 +1,4 @@
-package ru.liga;
+package ru.liga.util;
 
 import ru.liga.exception.FailFileException;
 
@@ -18,7 +18,7 @@ public class FileReader {
 
     public LinkedList<String> getListLinesFromFile(String path) {
         try (InputStream in = getClass().getResourceAsStream(path);
-             BufferedReader reader = new BufferedReader(new InputStreamReader(in));) {
+             BufferedReader reader = new BufferedReader(new InputStreamReader(in,"Cp1251"));) {
             LinkedList<String> listLines = new LinkedList<>();
             String line= reader.readLine();
             while (line!=null){

@@ -1,4 +1,4 @@
-package ru.liga;
+package ru.liga.front;
 
 import lombok.NonNull;
 import ru.liga.exception.ConsoleArgsException;
@@ -14,7 +14,7 @@ public class ConsoleParser {
      */
     public Console consoleParser(@NonNull String args) {
         try {
-            String[] arrParams = args.split("\\s+");
+            String[] arrParams = args.trim().split("\\s+");
             String command = arrParams[0].toLowerCase();
             LinkedList<String> commandArgs = new LinkedList<>();
             for (int i = 1; i < arrParams.length; i++) {

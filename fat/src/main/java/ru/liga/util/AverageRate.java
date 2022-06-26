@@ -1,6 +1,7 @@
-package ru.liga;
+package ru.liga.util;
 
 import lombok.NonNull;
+import ru.liga.back.ExchangeRates;
 
 import java.util.LinkedList;
 
@@ -22,5 +23,11 @@ public class AverageRate {
                 .mapToDouble(Number::doubleValue)
                 .average()
                 .getAsDouble();
+    }
+    public Double getAverageRateForExchangeRates(@NonNull LinkedList<ExchangeRates> listRates) {
+        if (listRates.size() == 0) {
+            return null;
+        }
+        return listRates.stream().mapToDouble(ExchangeRates::getRate).average().getAsDouble();
     }
 }

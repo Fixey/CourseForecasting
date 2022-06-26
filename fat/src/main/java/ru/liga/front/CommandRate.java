@@ -1,9 +1,13 @@
-package ru.liga;
+package ru.liga.front;
 
-import ru.liga.exception.ArgumentCommandException;
+import ru.liga.back.AlgorithmSelector;
+import ru.liga.back.ExchangeRates;
+import ru.liga.back.RateAlgorithm;
 import ru.liga.exception.CountDaysException;
+import ru.liga.util.PeriodUtils;
 
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Класс отвечающий за действия по команде Rate
@@ -15,9 +19,7 @@ public class CommandRate implements Command {
      * @param listArgs список аргументов [Тип валюты, период]
      */
     public void invoke(LinkedList<String> listArgs) {
-        if (listArgs.size() != 2) {
-            throw new ArgumentCommandException();
-        }
+
         new CommandRateValidation().ValidCommandRate(listArgs); //Проверим корректное написае команды
 
         String currency = listArgs.get(0).toUpperCase();
@@ -26,10 +28,15 @@ public class CommandRate implements Command {
         if (numDays == null) {
             throw new CountDaysException();
         }
+        String algorithmName = "";
+        if (listArgs.size() == 3) {
+            algorithmName = listArgs.get(2);
+        }
+        //Выбор алгоритма
+        RateAlgorithm algorithm = new AlgorithmSelector().getAlgorithm(algorithmName);
+        List<ExchangeRates> resultAlgorithm = algorithm.getListResult(currency, numDays); //Получение результата выполнение алгоритма
 
         //Формируем лист с предсказанными Курсами Валют
-        LinkedList<ExchangeRates> listOfForecastingExchangeRates = new ForecastingRate()
-                .getListOfForecastingExchangeRates(numDays, currency);
-        listOfForecastingExchangeRates.forEach(x -> System.out.println(x.getDateAndRate()));
+        resultAlgorithm.forEach(x -> System.out.println(x.getDateAndRate()));
     }
 }

@@ -2,7 +2,7 @@ package ru.liga.enums;
 
 import java.time.LocalDate;
 
-import static ru.liga.PeriodUtils.countDaysUntilDate;
+import static ru.liga.util.PeriodUtils.countDaysUntilDate;
 
 public enum Period {
     Today(0),
