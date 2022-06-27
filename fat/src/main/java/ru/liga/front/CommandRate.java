@@ -17,6 +17,7 @@ public class CommandRate implements Command {
      * Запуск блока команд рассчитывающий курс на период
      *
      * @param listArgs список аргументов [Тип валюты, период]
+     * @throws CountDaysException при не возможности подсчитать кол-во дней
      */
     public void invoke(LinkedList<String> listArgs) {
 

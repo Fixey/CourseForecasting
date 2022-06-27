@@ -12,6 +12,8 @@ import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
 import java.util.LinkedList;
 
+import static ru.liga.constant.ConstantUtil.DTFCUSTOM;
+
 public class PeriodUtils {
 
     /**
@@ -57,18 +59,17 @@ public class PeriodUtils {
     public static LinkedList<String> getListOfDatesForPeriod(@NonNull Integer days) {
         final LocalDateTime today = LocalDateTime.now();
         LinkedList<String> listDates = new LinkedList<>();
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("EE dd.MM.yyyy");
 
         String strData;
         if (days == 0) { //Для текущего дня
-            strData = dtf.format(today);
+            strData = DTFCUSTOM.format(today);
             listDates.add(Character.toUpperCase(strData.charAt(0)) + strData.substring(1) + " - ");
             return listDates;
         }
         for (int i = 1; i <= days; i++) {
             LocalDateTime nextDay = today.plusDays(i);
 
-            strData = dtf.format(nextDay);
+            strData = DTFCUSTOM.format(nextDay);
             listDates.add(Character.toUpperCase(strData.charAt(0)) + strData.substring(1) + " - ");
         }
         return listDates;

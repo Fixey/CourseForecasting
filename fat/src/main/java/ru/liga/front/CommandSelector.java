@@ -22,6 +22,4 @@ public class CommandSelector {
                 throw new UnknownCommandException();
         }
     }
-
-    ;
 }

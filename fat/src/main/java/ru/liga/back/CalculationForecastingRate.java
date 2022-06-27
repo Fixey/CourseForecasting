@@ -20,7 +20,7 @@ public class CalculationForecastingRate {
     public LinkedList<ExchangeRates> getListOfForecastingExchangeRates(LinkedList<ExchangeRates> listExchangeRatesIn, Integer days, String currency) {
         LinkedList<ExchangeRates> listExchangeRatesForCalc = (LinkedList<ExchangeRates>) listExchangeRatesIn.clone();
         LinkedList<ExchangeRates> listExchangeRates = new LinkedList<>();
-        Double rate = 0.0;
+        Double rate;
         AverageRate averageRate = new AverageRate();
         if (days == 0) {
             rate = averageRate.getAverageRateForExchangeRates(listExchangeRatesForCalc);

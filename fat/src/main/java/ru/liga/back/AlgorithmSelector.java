@@ -11,6 +11,7 @@ public class AlgorithmSelector {
      *
      * @param algorithmName название алгоритма
      * @return RateAlgorithm Инстанс алгоритма
+     * @throws UnknownAlgorithmException падает если не существует такого алгоритма
      */
     public RateAlgorithm getAlgorithm(String algorithmName) {
         if (algorithmName.isEmpty()) {

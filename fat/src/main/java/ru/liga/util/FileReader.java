@@ -14,16 +14,17 @@ public class FileReader {
      *
      * @param path путь к файлу
      * @return данные файла в виде листа
+     * @throws FailFileException при падении с ошибкой при открытии файла
      */
 
     public LinkedList<String> getListLinesFromFile(String path) {
         try (InputStream in = getClass().getResourceAsStream(path);
-             BufferedReader reader = new BufferedReader(new InputStreamReader(in,"Cp1251"));) {
+             BufferedReader reader = new BufferedReader(new InputStreamReader(in, "Cp1251"))) {
             LinkedList<String> listLines = new LinkedList<>();
-            String line= reader.readLine();
-            while (line!=null){
+            String line = reader.readLine();
+            while (line != null) {
                 listLines.add(line);
-                line= reader.readLine();
+                line = reader.readLine();
             }
             return listLines;
         } catch (IOException e) {

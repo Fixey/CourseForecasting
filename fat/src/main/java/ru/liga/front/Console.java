@@ -17,7 +17,7 @@ public class Console {
 
     @Getter
     @Setter
-    public LinkedList<String> commandArgs = new LinkedList<>();
+    public LinkedList<String> commandArgs;
 
     public Console(String commandName, LinkedList<String> commandArgs) {
         this.commandName = commandName;

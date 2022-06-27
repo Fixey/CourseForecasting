@@ -16,6 +16,8 @@ public class LineParserToExchangeRate {
      * @param listLines список строк и CSV
      * @param numLines  кол-во строк, которых надо преобразовать
      * @return LinkedList<ExchangeRates> Лист объектов Курса Валют
+     * @throws CurrencyRateException    падает при ошибке в названии курсе
+     * @throws AverageIndexOutException падает, если не код не смог рассчитать среднюю арифметическую
      */
     public LinkedList<ExchangeRates> getListExchangeRates(LinkedList<String> listLines, int numLines) {
         try {

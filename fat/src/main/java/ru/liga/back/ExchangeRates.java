@@ -3,7 +3,8 @@ package ru.liga.back;
 import lombok.Data;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+
+import static ru.liga.constant.ConstantUtil.DTFCUSTOM;
 
 /**
  * Объект Курс Валют
@@ -20,7 +21,6 @@ public class ExchangeRates {
     }
 
     ExchangeRates(Double rate) {
-        this.currency = currency;
         this.rate = rate;
         this.date = LocalDate.now();
     }
@@ -42,12 +42,11 @@ public class ExchangeRates {
      * @return String
      */
     public String getDateAndRate() {
-        final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("EE dd.MM.yyyy");
-        final String srtDate = dtf.format(date);
+        final String srtDate = DTFCUSTOM.format(date);
 
-        String result = Character.toUpperCase(srtDate.charAt(0)) + srtDate.substring(1) + " - "
+        String dateAndRateResult = Character.toUpperCase(srtDate.charAt(0)) + srtDate.substring(1) + " - "
                 + String.format("%.2f", rate);
 
-        return result;
+        return dateAndRateResult;
     }
 }
