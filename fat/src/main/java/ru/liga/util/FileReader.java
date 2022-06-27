@@ -1,5 +1,6 @@
 package ru.liga.util;
 
+import lombok.NonNull;
 import ru.liga.exception.FailFileException;
 
 import java.io.BufferedReader;
@@ -19,7 +20,7 @@ public class FileReader {
 
     public LinkedList<String> getListLinesFromFile(String path) {
         try (InputStream in = getClass().getResourceAsStream(path);
-             BufferedReader reader = new BufferedReader(new InputStreamReader(in, "Cp1251"))) {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(in, "Cp1251"))) {
             LinkedList<String> listLines = new LinkedList<>();
             String line = reader.readLine();
             while (line != null) {

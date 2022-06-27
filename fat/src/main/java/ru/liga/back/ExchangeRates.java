@@ -2,6 +2,7 @@ package ru.liga.back;
 
 import lombok.Data;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import static ru.liga.constant.ConstantUtil.DTFCUSTOM;
@@ -13,24 +14,24 @@ import static ru.liga.constant.ConstantUtil.DTFCUSTOM;
 public class ExchangeRates {
 
     public LocalDate date = null;
-    public Double rate = 0.0d;
+    public BigDecimal rate = BigDecimal.ZERO;
     public String currency = "";
 
     ExchangeRates() {
 
     }
 
-    ExchangeRates(Double rate) {
+    ExchangeRates(BigDecimal rate) {
         this.rate = rate;
         this.date = LocalDate.now();
     }
 
-    ExchangeRates(Double rate, LocalDate date) {
+    ExchangeRates(BigDecimal rate, LocalDate date) {
         this.rate = rate;
         this.date = date;
     }
 
-    ExchangeRates(String currency, Double rate, LocalDate date) {
+    ExchangeRates(String currency, BigDecimal rate, LocalDate date) {
         this.currency = currency;
         this.rate = rate;
         this.date = date;

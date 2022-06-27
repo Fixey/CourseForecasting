@@ -2,6 +2,7 @@ package ru.liga.back;
 
 import ru.liga.util.AverageRate;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.LinkedList;
 
@@ -20,7 +21,7 @@ public class CalculationForecastingRate {
     public LinkedList<ExchangeRates> getListOfForecastingExchangeRates(LinkedList<ExchangeRates> listExchangeRatesIn, Integer days, String currency) {
         LinkedList<ExchangeRates> listExchangeRatesForCalc = (LinkedList<ExchangeRates>) listExchangeRatesIn.clone();
         LinkedList<ExchangeRates> listExchangeRates = new LinkedList<>();
-        Double rate;
+        BigDecimal rate;
         AverageRate averageRate = new AverageRate();
         if (days == 0) {
             rate = averageRate.getAverageRateForExchangeRates(listExchangeRatesForCalc);

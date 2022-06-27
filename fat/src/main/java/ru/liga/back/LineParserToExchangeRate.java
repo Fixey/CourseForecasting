@@ -4,6 +4,7 @@ import ru.liga.exception.AverageIndexOutException;
 import ru.liga.exception.CurrencyRateException;
 import ru.liga.util.PeriodUtils;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -35,9 +36,9 @@ public class LineParserToExchangeRate {
                     throw new CurrencyRateException();
                 }
                 String currencyName = aliasCurrency.get(currency);
-                double dRate = Double.parseDouble(rate.substring(2, rate.length() - 1).replace(",", "."));
+                BigDecimal bigDecimalRate = BigDecimal.valueOf(Double.parseDouble(rate.substring(2, rate.length() - 1).replace(",", ".")));
 
-                listExchangeRates.add(new ExchangeRates(currencyName, dRate, localDate));
+                listExchangeRates.add(new ExchangeRates(currencyName, bigDecimalRate, localDate));
                 if (i == numLines) {
                     return listExchangeRates;
                 }

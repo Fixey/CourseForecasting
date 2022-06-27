@@ -24,8 +24,8 @@ public class ConsoleApp {
                 Console console = consoleParser.consoleParser(arg);
                 console.invokeCommand();
             } catch (Exception e) {
-                System.out.println(new ConsoleException(e));
-//                throw new ConsoleException(e);
+//                System.out.println(new ConsoleException(e));
+                throw new ConsoleException(e);
             }
         }
     }
