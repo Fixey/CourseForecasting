@@ -5,7 +5,7 @@ import lombok.Data;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import static ru.liga.constant.ConstantUtil.DTFCUSTOM;
+import static ru.liga.constant.ConstantUtil.DATE_TIME_FORMATTER;
 
 /**
  * Объект Курс Валют
@@ -43,7 +43,7 @@ public class ExchangeRates {
      * @return String
      */
     public String getDateAndRate() {
-        final String srtDate = DTFCUSTOM.format(date);
+        final String srtDate = DATE_TIME_FORMATTER.format(date);
 
         String dateAndRateResult = Character.toUpperCase(srtDate.charAt(0)) + srtDate.substring(1) + " - "
                 + String.format("%.2f", rate);

@@ -12,7 +12,7 @@ import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
 import java.util.LinkedList;
 
-import static ru.liga.constant.ConstantUtil.DTFCUSTOM;
+import static ru.liga.constant.ConstantUtil.DATE_TIME_FORMATTER;
 
 public class PeriodUtils {
 
@@ -62,14 +62,14 @@ public class PeriodUtils {
 
         String strData;
         if (days == 0) { //Для текущего дня
-            strData = DTFCUSTOM.format(today);
+            strData = DATE_TIME_FORMATTER.format(today);
             listDates.add(Character.toUpperCase(strData.charAt(0)) + strData.substring(1) + " - ");
             return listDates;
         }
         for (int i = 1; i <= days; i++) {
             LocalDateTime nextDay = today.plusDays(i);
 
-            strData = DTFCUSTOM.format(nextDay);
+            strData = DATE_TIME_FORMATTER.format(nextDay);
             listDates.add(Character.toUpperCase(strData.charAt(0)) + strData.substring(1) + " - ");
         }
         return listDates;
